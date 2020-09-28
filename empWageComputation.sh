@@ -7,13 +7,14 @@ monthlyWage=0
 wageRate=20
 fullDayHour=8
 workingDaysPerMonth=20
+dailyWage=$(($wageRate*$fullDayHour))
 while [ $hours -le 100 -o $days -le $workingDaysPerMonth -a $counter -le 30 ]
 do
 	present=$((1+$RANDOM%2))
 	case $present in
     1)
         echo "Day#$counter: Present"
-        monthlyWage=$(($monthlyWage+$(($wageRate*$fullDayHour))))
+        monthlyWage=$(($monthlyWage+$dailyWage))
 		((days++))
 		hours=$(($hours+$fullDayHour))
     	;;
@@ -29,3 +30,4 @@ function getWorkHours(){
 echo "Monthly wage: $monthlyWage"
 workHours=(`getWorkHours`)
 echo "Work hours: $workHours"
+echo "Daily wage: $dailyWage"
