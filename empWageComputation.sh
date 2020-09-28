@@ -8,6 +8,9 @@ wageRate=20
 fullDayHour=8
 workingDaysPerMonth=20
 dailyWage=$(($wageRate*$fullDayHour))
+daysArr=()
+dailyWages=()
+index=0
 while [ $hours -le 100 -o $days -le $workingDaysPerMonth -a $counter -le 30 ]
 do
 	present=$((1+$RANDOM%2))
@@ -17,6 +20,9 @@ do
         monthlyWage=$(($monthlyWage+$dailyWage))
 		((days++))
 		hours=$(($hours+$fullDayHour))
+		daysArr[((index))]=$counter
+		dailyWages[((index))]=$dailyWage
+		((index++))
     	;;
     2)
         echo "Day#$counter: Absent"
@@ -30,4 +36,8 @@ function getWorkHours(){
 echo "Monthly wage: $monthlyWage"
 workHours=(`getWorkHours`)
 echo "Work hours: $workHours"
-echo "Daily wage: $dailyWage"
+for (( i=0 ; i<${#daysArr[@]} ; i++ ))
+do
+	echo "Day#: ${daysArr[$i]}"
+	echo "Wage: ${dailyWages[$i]}"
+done
