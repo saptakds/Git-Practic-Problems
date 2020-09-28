@@ -14,3 +14,6 @@ wageRate=20
 fullDayHour=8
 dailyWage=$(($wageRate*$fullDayHour*$attend))
 echo "Daily Employee Wage: $dailyWage"
+partTimeHour=8
+partTimeWage=$(($partTimeHour*$wageRate*$attend))
+echo "Parttime wage: $partTimeWage"
