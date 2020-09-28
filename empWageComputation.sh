@@ -6,6 +6,7 @@ partTimeWage=0
 wageRate=20
 fullDayHour=8
 partTimeHour=8
+workingDaysPerMonth=20
 case $randomVar in
 	1)
 		echo "Employee: Present"
@@ -18,3 +19,5 @@ case $randomVar in
 esac
 echo "Daily Employee Wage: $dailyWage"
 echo "Parttime wage: $partTimeWage"
+monthlyWage=$(($dailyWage*$workingDaysPerMonth))
+echo "Monthly wage: $monthlyWage"
