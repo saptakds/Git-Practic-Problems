@@ -1,23 +1,26 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage Computation Program"
-randomVar=$((1+$RANDOM%2))
-dailyWage=0
-partTimeWage=0
+hours=0
+days=0
+counter=1
+monthlyWage=0
 wageRate=20
 fullDayHour=8
-partTimeHour=8
 workingDaysPerMonth=20
-case $randomVar in
-	1)
-		echo "Employee: Present"
-		dailyWage=$(($wageRate*$fullDayHour))
-		partTimeWage=$(($partTimeHour*$wageRate))
-	;;
-	2)
-		echo "Employee: Absent"
-	;;
-esac
-echo "Daily Employee Wage: $dailyWage"
-echo "Parttime wage: $partTimeWage"
-monthlyWage=$(($dailyWage*$workingDaysPerMonth))
+while [ $hours -le 100 -o $days -le $workingDaysPerMonth -a $counter -le 30 ]
+do
+	present=$((1+$RANDOM%2))
+	case $present in
+    1)
+        echo "Day#$counter: Present"
+        monthlyWage=$(($monthlyWage+$(($wageRate*$fullDayHour))))
+		((days++))
+		hours=$(($hours+$fullDayHour))
+    	;;
+    2)
+        echo "Day#$counter: Absent"
+    	;;
+	esac
+	((counter++))
+done
 echo "Monthly wage: $monthlyWage"
