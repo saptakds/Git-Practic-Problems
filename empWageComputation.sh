@@ -23,4 +23,9 @@ do
 	esac
 	((counter++))
 done
+function getWorkHours(){
+	echo $hours
+}
 echo "Monthly wage: $monthlyWage"
+workHours=(`getWorkHours`)
+echo "Work hours: $workHours"
